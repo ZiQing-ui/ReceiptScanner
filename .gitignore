@@ -23,6 +23,8 @@ htmlcov/
 *.userosscache
 *.sln.docstates
 
+*.zip
+
 # Operating System
 Thumbs.db
 [Dd]esktop.ini
