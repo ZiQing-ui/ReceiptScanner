@@ -12,7 +12,13 @@ from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_cors import CORS
 import numpy as np
 
-from receipt_scanner import FuelReceiptOCR, ReceiptScanResult
+try:
+    from receipt_scanner import FuelReceiptOCR, ReceiptScanResult
+except ImportError:
+    try:
+        from .receipt_scanner import FuelReceiptOCR, ReceiptScanResult
+    except ImportError:
+        from src.receipt_scanner import FuelReceiptOCR, ReceiptScanResult
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
