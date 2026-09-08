@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuel Receipt Scanner - Batch OCR & Grand Total</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-badge">Batch OCR Engine</div>
+      <h1>Fuel Receipt OCR Scanner</h1>
+      <p class="subtitle">Upload multiple receipts to extract individual totals, view raw text, and calculate the Grand Total.</p>
+    </header>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+      <div class="card upload-card">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" multiple class="file-input">
+          <div class="dropzone-content">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <p class="dropzone-title">Drop multiple fuel receipt images here</p>
+            <p class="dropzone-subtitle">or <button type="button" class="btn-link" id="browseBtn">browse files</button> (select one or multiple images)</p>
+            <span class="supported-formats">PNG, JPG, JPEG, WEBP</span>
+          </div>
+        </div>
+
+        <div class="samples-bar">
+          <span class="samples-label">Quick Test:</span>
+          <button type="button" class="btn-sample-all" id="scanAllSamplesBtn">
+            ⚡ Scan All 5 Sample Receipts
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading State -->
+    <div class="card loader-card" id="loaderCard" style="display: none;">
+      <div class="spinner"></div>
+      <p class="loader-text" id="loaderText">Processing receipts with OCR engine...</p>
+      <span class="loader-subtext">Extracting totals and generating raw output text</span>
+    </div>
+
+    <!-- Empty State -->
+    <div class="card empty-state-card" id="emptyState">
+      <div class="empty-icon">🧾</div>
+      <h3>No Receipts Scanned</h3>
+      <p>Upload receipt images above or click "Scan All 5 Sample Receipts" to test.</p>
+    </div>
+
+    <!-- Results Section -->
+    <section id="resultsSection" style="display: none;">
+      <!-- Grand Total Summary Card -->
+      <div class="card grand-total-card">
+        <div class="grand-total-header">
+          <div>
+            <span class="grand-total-label">SUMMED GRAND TOTAL</span>
+            <div class="grand-total-display">
+              <span class="currency-symbol">$</span>
+              <span class="grand-total-number" id="grandTotalValue">0.00</span>
+            </div>
+          </div>
+          <div class="summary-stats">
+            <div class="stat-box">
+              <span class="stat-num" id="receiptsCount">0</span>
+              <span class="stat-label">Receipts Scanned</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num" id="totalsFoundCount">0</span>
+              <span class="stat-label">Totals Captured</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Receipts List Header -->
+      <div class="results-toolbar">
+        <h2>Individual Receipt Breakdown (<span id="listCount">0</span>)</h2>
+        <button type="button" class="btn-action" id="downloadAllJsonBtn">Export All Data (JSON)</button>
+      </div>
+
+      <!-- Receipts Container -->
+      <div class="receipts-list" id="receiptsList"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast">Copied to clipboard!</div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

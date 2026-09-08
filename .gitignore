@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing & Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Operating System
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store
+
+# Temporary files
+*.log
+*.tmp

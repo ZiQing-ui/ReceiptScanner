@@ -1,0 +1,12 @@
+# ReceiptScanner Core Dependencies
+flask>=3.0.0
+flask-cors>=5.0.0
+rapidocr-onnxruntime>=1.3.0
+onnxruntime>=1.16.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+pillow>=10.0.0
+pytesseract>=0.3.10
+
+# Windows OCR fallback (Windows only)
+winocr>=0.0.15; sys_platform == 'win32'
